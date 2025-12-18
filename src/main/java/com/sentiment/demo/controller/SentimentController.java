@@ -1,0 +1,27 @@
+package com.sentiment.demo.controller;
+
+import com.sentiment.demo.dto.SentimentResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/sentiment") // La URL será: http://localhost:8080/sentiment
+public class SentimentController {
+
+    @PostMapping
+    public ResponseEntity<SentimentResponse> analizar(@RequestBody Map<String, String> body) {
+        // 1. Extraemos el texto del JSON que envió el usuario
+        String texto = body.get("text");
+
+        // 2. Validación: Si no hay texto, devolvemos error (400 Bad Request)
+        if (texto == null || texto.trim().isEmpty()) {
+            return ResponseEntity.badRequest()
+                .body(new SentimentResponse("Error: El campo 'text' es obligatorio.", 0.0));
+        }
+
+        // 3. Por ahora, devolvemos una respuesta "ficticia" (Mock) 
+        // para confirmar que el Backend funciona.
+        return ResponseEntity.ok(new SentimentResponse("Positivo", 0.99));
+    }
+}
