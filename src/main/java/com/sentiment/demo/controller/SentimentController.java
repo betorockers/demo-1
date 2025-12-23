@@ -1,6 +1,5 @@
 package com.sentiment.demo.controller;
 
-import com.sentiment.demo.dto.ErrorResponse;
 import com.sentiment.demo.dto.SentimentResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
