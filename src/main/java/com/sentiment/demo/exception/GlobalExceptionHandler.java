@@ -1,37 +1,43 @@
 package com.sentiment.demo.exception;
 
-
+import com.sentiment.demo.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Objects;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Si el backend recibe algo raro o se cae una parte, devolver un JSON amigable
-    
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGeneric(Exception ex) {
+    // Errores de validación (@Valid)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidation(
+            MethodArgumentNotValidException ex) {
+
+        String msg = Objects.requireNonNull(
+                ex.getBindingResult().getFieldError()
+        ).getDefaultMessage();
+
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponse("Error interno del servidor"));
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(
+                        msg,
+                        "VALIDATION_ERROR"
+                ));
     }
 
-    //todavía NO existe el RestTemplate ni el error específico de Python. 
-    //Cuando Dev 1 lo integre,   agregas un handler extra más específico aquí.
-    //Cuando integren RestTemplate, agrega este método dentro del mismo handler:
-    //Esto te deja perfecto para cuando Dev1 conecte FastAPI.
-    /*
-     * import org.springframework.web.client.ResourceAccessException;
+    // Error genérico no controlado
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGeneric(Exception ex) {
 
-       
-
-        @ExceptionHandler(ResourceAccessException.class)
-        public ResponseEntity<ErrorResponse> handlePythonDown() {
-            return ResponseEntity
-                    .status(HttpStatus.SERVICE_UNAVAILABLE)
-                    .body(new ErrorResponse("Modelo no disponible"));
-        }
-     */
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse(
+                        "Error interno del servidor",
+                        "INTERNAL_ERROR"
+                ));
+    }
 }
