@@ -2,24 +2,79 @@ package com.sentiment.demo.client;
 
 import com.sentiment.demo.dto.Prevision;
 import com.sentiment.demo.dto.SentimentResponse;
+import com.sentiment.demo.exception.ModelUnavailableException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
-import java.util.Objects;
 
 @Component
 public class SentimentDsClient {
+
     private final RestTemplate restTemplate;
+    private final String pythonUrl;
 
-    public SentimentDsClient(RestTemplate restTemplate) {
+    public SentimentDsClient(RestTemplate restTemplate, @Value("${python.api.url}") String pythonUrl) {
         this.restTemplate = restTemplate;
+        this.pythonUrl = pythonUrl;
     }
 
-    // Como no sabemos como es el DS real usaremos uno falso para que se pueda probar
-
-    public SentimentResponse predict(String text){
-        return new SentimentResponse(Prevision.POSITIVO, 0.95);
+    /**
+     * Llama al servicio de DS y valida la respuesta si todo esta correcto regresa un SentimentResponse
+     *      este modulo tiene un reintento de conexion y utiliza el GlobalExceptionHandler definido para responder.
+     * @param text
+     * @return SentimentResponse
+     */
+    public SentimentResponse predict(String text) {
+        // retry mínimo: 1 reintento extra solo si hay timeout/conexión
+        try {
+            return doCall(text);
+        } catch (ResourceAccessException ex) {
+            // intento 2
+            try {
+                return doCall(text);
+            } catch (ResourceAccessException ex2) {
+                // lo normalizamos para que el handler lo traduzca a 503
+                throw new ModelUnavailableException("Modelo no disponible", ex2);
+            }
+        }
     }
 
+    private SentimentResponse doCall(String text) {
+        Map<String, Object> response =
+                restTemplate.postForObject(
+                        pythonUrl,
+                        Map.of("text", text),
+                        Map.class
+                );
+
+        if (response == null) {
+            throw new ModelUnavailableException("Respuesta vacía desde DS");
+        }
+
+        Object previsionRaw = response.get("prevision");
+        Object probRaw = response.get("probabilidad");
+
+        if (previsionRaw == null || probRaw == null) {
+            throw new ModelUnavailableException("Respuesta incompleta desde DS");
+        }
+
+        Prevision prevision;
+        try {
+            prevision = Prevision.valueOf(previsionRaw.toString());
+        } catch (IllegalArgumentException e) {
+            throw new ModelUnavailableException("Valor inválido de prevision desde DS: " + previsionRaw, e);
+        }
+
+        double probabilidad;
+        try {
+            probabilidad = ((Number) probRaw).doubleValue();
+        } catch (ClassCastException e) {
+            throw new ModelUnavailableException("Valor inválido de probabilidad desde DS: " + probRaw, e);
+        }
+
+        return new SentimentResponse(prevision, probabilidad);
+    }
 }
