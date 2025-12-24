@@ -1,8 +1,7 @@
 # Bitácora de Avance - Equipo Dev 4 (QA & Docs)
 
-Este documento sirve como registro de las actividades realizadas, decisiones tomadas y soluciones implementadas por el equipo de QA y Documentación.
+Este documento sirve como registro de las actividades realizadas, decisiones tomadas y soluciones implementadas por Omar toledo Dev4 - QA y Documentación.
 
----
 
 ## 📅 Sesión 1: Preparación para Demo y Calidad Base
 
@@ -47,7 +46,7 @@ Cumplir con los entregables definidos en `TareasSeman1.txt` para el rol Dev 4: T
 
 ---
 
-## 🚀 Estado de Entrega (Rama: tOLEDOdEV4-qa)
+## 🚀 Estado de Entrega (Rama: ToledoDev-QA)
 
 **Estatus:** Listo para Merge Request (PR).
 
@@ -56,3 +55,34 @@ Se ha verificado que todos los artefactos (Código, Tests, Docker, Documentació
 - **Código:** Comentado y estructurado (JavaDoc agregado).
 - **Tests:** Unitarios (MockMvc) y Manuales (Postman) listos.
 - **Docs:** README orientado al jurado y Bitácora actualizada.
+
+## 📅 Sesión 2: Migración a JDK 17 y Estabilización de Build
+
+### 🎯 Objetivos
+Alinear el entorno de desarrollo con el estándar de despliegue (JDK 17) y asegurar que el proyecto compile y pase pruebas (`BUILD SUCCESS`).
+
+### ✅ Tareas Realizadas
+
+1.  **Downgrade de Java 21 a 17**
+    *   **Acción:** Se modificó `pom.xml` (`<java.version>17</java.version>`) y `Dockerfile`.
+    *   **Motivo:** Compatibilidad con el entorno de despliegue y herramientas del equipo.
+
+2.  **Implementación de Componentes Base (Dev 3 Support)**
+    *   **Acción:** Se crearon `SentimentRequest` (DTO), `SentimentResponse` (DTO con Enum `Prevision`) y `SentimentController` (Mock).
+    *   **Motivo:** Necesarios para que los tests de integración compilen y ejecuten sin esperar al Dev 3.
+
+3.  **Corrección de Errores de Compilación**
+    *   **Acción:** Se solucionó el error de tipos incompatibles (`String` vs `Prevision`) en los DTOs.
+    *   **Acción:** Se refactorizó `GlobalExceptionHandler` comentando código conflictivo para permitir la compilación y revisión posterior.
+
+4.  **Ejecución Exitosa de Pruebas**
+    *   **Resultado:** `./mvnw clean test` arroja **BUILD SUCCESS**.
+    *   **Validación:** Se confirmó funcionamiento en entornos Windows (PowerShell) y Linux (Bash).
+
+### ⚠️ Problemas y Soluciones
+
+| Problema / Desafío | Solución Implementada |
+| :--- | :--- |
+| **Incompatibilidad JDK:** El proyecto estaba en Java 21 pero el equipo usa 17. | Se ajustó `pom.xml` y `maven-compiler-plugin` a release 17. |
+| **Código Faltante:** Tests fallaban por falta de clases del Dev 3. | Se implementaron versiones Mock de `SentimentController` y DTOs. |
+| **Errores de Sintaxis:** `GlobalExceptionHandler` tenía bloques mal cerrados. | Se limpió el archivo y se comentó el código problemático para Code Review. |
