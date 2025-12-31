@@ -1,7 +1,11 @@
 package com.sentiment.demo.controller;
 
+import com.sentiment.demo.dto.StatResponseDTO;
+import com.sentiment.demo.service.StatsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -9,12 +13,16 @@ import java.util.Map;
 @RestController
 public class StatsController {
 
+    private final StatsService statsService;
+
+    public StatsController(StatsService statsService) {
+        this.statsService = statsService;
+    }
+
     @GetMapping("/stats")
-    public ResponseEntity<Map<String, Object>> getStats() {
-        // TODO (Dev1 - Bernardo): implementar con persistencia (DB)
-        return ResponseEntity.status(501).body(Map.of(
-                "status", "NOT_IMPLEMENTED",
-                "message", "Stats pendiente: se implementará con persistencia en BD"
-        ));
+    public StatResponseDTO getStats(@RequestParam(defaultValue = "100") int cantidad) {
+        if (cantidad < 1) cantidad = 1;
+        if (cantidad > 1000) cantidad = 1000;
+        return statsService.getStats(cantidad);
     }
 }
