@@ -1,25 +1,66 @@
-# API de Análisis de Sentimientos - Grupo 10
+# 🎭 Sentiment Analysis API - Demo
 
-## Endpoints
-- **POST `/sentiment`**: Recibe un JSON `{"text": "..."}` y devuelve la predicción.
-- **GET `/health`**: Verifica si la API está en línea.
+API REST para análisis de sentimientos, diseñada para integrarse con modelos de IA (FastAPI) o funcionar en modo Mock para demostraciones rápidas.
 
-## Requisitos
+## 🚀 Quickstart (30 segundos)
+
+### Prerrequisitos
 - Java 17
-- Maven
-- Python con FastAPI (Puerto 8000)
+- Maven (opcional si usas el Wrapper `mvnw` o Docker)
+- Docker (opcional)
 
-## Ejecución
+### Ejecución Local
+1. Clonar el repositorio.
+2. Ejecutar:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+3. Probar:
+   ```bash
+   curl -X POST http://localhost:8080/sentiment -H "Content-Type: application/json" -d '{"text": "Me encanta este proyecto"}'
+   ```
+
+### Ejecución con Docker
 ```bash
-./mvnw spring-boot:run 
+docker-compose up --build
+```
 
+---
 
+## ⚙️ Configuración
 
+El comportamiento se controla vía `application.properties` o variables de entorno:
 
-Análisis de los Resultados (QA Report)
+| Variable | Valor | Descripción |
+|----------|-------|-------------|
+| `SENTIMENT_MODE` | `mock` | (Por defecto) Devuelve respuestas simuladas aleatorias. Ideal para demos UI. |
+| `SENTIMENT_MODE` | `python` | Intenta conectar con el servicio de IA real. |
+| `PYTHON_API_URL` | URL | URL del servicio FastAPI (ej. `http://localhost:8000`). |
 
-    1. Prueba de Texto Positivo: ¡Lograda! El servidor respondió un 200 OK y devolvió el JSON esperado.
+---
 
-    2. Prueba de Validación (Texto Vacío): ¡Lograda y muy importante! Viste que salió un HTTP/1.1 400. Esto significa que el trabajo del Dev 2 (validaciones) está funcionando: el sistema no se rompió, sino que le avisó al usuario que cometió un error.
+## 🛠️ Endpoints Principales
 
-    3. Prueba de Texto Largo: ¡Lograda! El sistema procesó la cadena larga sin problemas de memoria o desbordamiento.
+### 1. Analizar Sentimiento
+- **POST** `/sentiment`
+- **Body**: `{ "text": "Texto a analizar" }`
+- **Response**: `{ "sentiment": "POSITIVO", "score": 0.95 }`
+
+### 2. Health Check
+- **GET** `/actuator/health` o `/health` (si está configurado)
+- Verifica que el servicio esté arriba.
+
+---
+
+## 🐛 Troubleshooting
+
+**Error: "Connection refused" en modo Python**
+- Asegúrate de que el servicio de IA esté corriendo en el puerto 8000.
+- Si usas Docker, descomenta el servicio `sentiment-model` en `docker-compose.yml`.
+
+**Error: Java version**
+- Este proyecto requiere **Java 17**. Verifica con `java -version`.
+
+---
+
+*Proyecto creado para Hackathon Demo.*
