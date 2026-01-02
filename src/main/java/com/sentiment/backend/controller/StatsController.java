@@ -1,4 +1,4 @@
-package com.sentiment.demo.controller;
+package com.sentiment.backend.controller;
 
 import com.sentiment.demo.dto.StatResponseDTO;
 import com.sentiment.demo.service.StatsService;

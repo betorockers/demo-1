@@ -1,11 +1,14 @@
-package com.sentiment.demo.controller;
+package com.sentiment.backend.controller;
 
+<<<<<<< HEAD:src/test/java/com/sentiment/demo/controller/SentimentControllerMockMvcTest.java
 import com.sentiment.demo.client.SentimentDsClient;
 import com.sentiment.demo.dto.Prevision;
 import com.sentiment.demo.dto.SentimentResponse;
 import com.sentiment.demo.dto.StatResponseDTO;
 import com.sentiment.demo.service.SentimentService;
 import com.sentiment.demo.service.StatsService;
+=======
+>>>>>>> 4b46a35 (limpieza, profesionalizacion del codigo, reemplazo de nombre del proyecto, cosistencias y contrato):src/test/java/com/sentiment/backend/controller/SentimentControllerMockMvcTest.java
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,7 +16,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+<<<<<<< HEAD:src/test/java/com/sentiment/demo/controller/SentimentControllerMockMvcTest.java
 import static org.mockito.ArgumentMatchers.anyInt;
+=======
+import com.sentiment.backend.client.SentimentDsClient;
+import com.sentiment.backend.controller.HealthController;
+import com.sentiment.backend.controller.SentimentController;
+import com.sentiment.backend.controller.StatsController;
+import com.sentiment.backend.dto.Prevision;
+import com.sentiment.backend.dto.SentimentResponse;
+import com.sentiment.backend.service.SentimentService;
+
+>>>>>>> 4b46a35 (limpieza, profesionalizacion del codigo, reemplazo de nombre del proyecto, cosistencias y contrato):src/test/java/com/sentiment/backend/controller/SentimentControllerMockMvcTest.java
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

@@ -1,4 +1,4 @@
-package com.sentiment.demo.dto;
+package com.sentiment.backend.dto;
 
 
 public record ErrorResponse(
