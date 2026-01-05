@@ -102,6 +102,15 @@
 				"url": "{{baseUrl}}/stats"
 			},
 			"response": []
+		},
+		{
+			"name": "History (Demo)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/history?limit=5"
+			},
+			"response": []
 		}
 	],
 	"variable": [

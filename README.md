@@ -40,6 +40,10 @@ El comportamiento se controla vía `application.properties` o variables de entor
 - **Trazabilidad**: `X-Request-Id` único por petición para depuración.
 - **Calidad**: DTOs estrictos y validaciones de entrada.
 
+## 🧪 Testing
+
+El proyecto cuenta con una suite de pruebas automáticas y scripts de verificación rápida. Consulta TESTING.md para más detalles.
+
 ## 🐳 Docker
 
 ```bash
