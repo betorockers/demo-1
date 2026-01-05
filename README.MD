@@ -63,4 +63,19 @@ El comportamiento se controla vía `application.properties` o variables de entor
 
 ---
 
+<<<<<<< HEAD
 *Proyecto creado para Hackathon Demo.*
+=======
+## 🧪 Casos de Prueba (QA)
+
+| Caso | Input | Código Esperado |
+|------|-------|-----------------|
+| **Éxito** | `{"text": "Hola mundo"}` | **200 OK** |
+| **Error Validación** | `{"text": ""}` | **400 Bad Request** |
+| **Modelo Caído** | (Simular apagando Python) | **503 Service Unavailable** |
+
+## corregido
+---
+
+*Proyecto creado para Hackathon NoCountry.*
+>>>>>>> f8b7abc ( 'corregido para nuevo pull request´' limpieza final, unificación de docs y estandarización Docker)
