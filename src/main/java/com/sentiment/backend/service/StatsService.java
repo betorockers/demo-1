@@ -1,10 +1,12 @@
-package com.sentiment.demo.service;
+package com.sentiment.backend.service;
 
-import com.sentiment.demo.dto.Prevision;
-import com.sentiment.demo.dto.StatResponseDTO;
-import com.sentiment.demo.repository.SentimentStatRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import com.sentiment.backend.dto.Prevision;
+import com.sentiment.backend.dto.StatResponseDTO;
+import com.sentiment.backend.entity.SentimentStat;
+import com.sentiment.backend.repository.SentimentStatRepository;
 
 @Service
 public class StatsService {

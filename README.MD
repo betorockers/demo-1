@@ -1,4 +1,4 @@
-# 🎭 Sentiment Analysis API - Backend
+# 🎭 Sentiment Analysis API - Demo
 
 API REST para análisis de sentimientos, diseñada para integrarse con modelos de IA (FastAPI) o funcionar en modo Mock para demostraciones rápidas.
 
@@ -35,7 +35,7 @@ El comportamiento se controla vía `application.properties` o variables de entor
 |----------|-------|-------------|
 | `SENTIMENT_MODE` | `mock` | (Por defecto) Devuelve respuestas simuladas aleatorias. Ideal para demos UI. |
 | `SENTIMENT_MODE` | `python` | Intenta conectar con el servicio de IA real. |
-| `PYTHON_API_BASE_URL` | URL | URL base del servicio FastAPI (ej. `http://localhost:8000`). |
+| `PYTHON_API_URL` | URL | URL del servicio FastAPI (ej. `http://localhost:8000`). |
 
 ---
 
@@ -44,7 +44,7 @@ El comportamiento se controla vía `application.properties` o variables de entor
 ### 1. Analizar Sentimiento
 - **POST** `/sentiment`
 - **Body**: `{ "text": "Texto a analizar" }`
-- **Response**: `{ "prevision": "POSITIVO", "probabilidad": 0.95 }`
+- **Response**: `{ "sentiment": "POSITIVO", "score": 0.95 }`
 
 ### 2. Health Check
 - **GET** `/actuator/health` o `/health` (si está configurado)
@@ -71,7 +71,11 @@ El comportamiento se controla vía `application.properties` o variables de entor
 | **Error Validación** | `{"text": ""}` | **400 Bad Request** |
 | **Modelo Caído** | (Simular apagando Python) | **503 Service Unavailable** |
 
+---
+
+*Proyecto creado para Hackathon NoCountry.*
 ## corregido
 ---
 
 *Proyecto creado para Hackathon NoCountry.*
+>>>>>>> f8b7abc ( 'corregido para nuevo pull request´' limpieza final, unificación de docs y estandarización Docker)

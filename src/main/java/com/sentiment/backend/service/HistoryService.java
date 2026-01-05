@@ -1,9 +1,11 @@
-package com.sentiment.demo.service;
+package com.sentiment.backend.service;
 
-import com.sentiment.demo.dto.HistoryResponseDTO;
-import com.sentiment.demo.repository.SentimentStatRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import com.sentiment.backend.dto.HistoryResponseDTO;
+import com.sentiment.backend.repository.SentimentStatRepository;
+import com.sentiment.backend.entity.SentimentStat;
 
 import java.util.List;
 

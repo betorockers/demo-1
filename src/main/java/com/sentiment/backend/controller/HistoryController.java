@@ -1,10 +1,11 @@
-package com.sentiment.demo.controller;
+package com.sentiment.backend.controller;
 
-import com.sentiment.demo.dto.HistoryResponseDTO;
-import com.sentiment.demo.service.HistoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sentiment.backend.dto.HistoryResponseDTO;
+import com.sentiment.backend.service.HistoryService;
 
 import java.util.List;
 

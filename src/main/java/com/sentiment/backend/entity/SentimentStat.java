@@ -1,10 +1,11 @@
-package com.sentiment.demo.entity;
+package com.sentiment.backend.entity;
 
 
-import com.sentiment.demo.dto.Prevision;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+
+import com.sentiment.backend.dto.Prevision;
 
 @Entity
 @Table(name = "sentiment_stats")

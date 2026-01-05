@@ -1,10 +1,11 @@
 package com.sentiment.backend.controller;
 
-import com.sentiment.demo.dto.StatResponseDTO;
-import com.sentiment.demo.service.StatsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sentiment.backend.dto.StatResponseDTO;
+import com.sentiment.backend.service.StatsService;
 
 
 @RestController

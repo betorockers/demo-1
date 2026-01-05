@@ -1,10 +1,10 @@
-package com.sentiment.demo.repository;
+package com.sentiment.backend.repository;
 
-import com.sentiment.demo.entity.SentimentStat;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.sentiment.backend.entity.SentimentStat;
 
 import java.util.List;
 
