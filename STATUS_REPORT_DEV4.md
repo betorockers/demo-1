@@ -12,7 +12,7 @@
     *   Explicación de modos `mock` vs `python`.
 
 2.  **Calidad y Pruebas**:
-    *   **Tests Unitarios**: `SentimentControllerTest.java` cubre casos de éxito (200), validación (400) y stats.
+    *   **Tests Unitarios**: Suite completa de **8 pruebas** pasando (Contexto, Validaciones, Stats, History, Health).
     *   **Verificación**: ✅ Ejecutados y pasando (`BUILD SUCCESS`).
     *   **Postman**: Colección actualizada con `/stats` y `/health/model`.
 
