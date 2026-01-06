@@ -63,9 +63,6 @@ El comportamiento se controla vía `application.properties` o variables de entor
 
 ---
 
-<<<<<<< HEAD
-*Proyecto creado para Hackathon Demo.*
-=======
 ## 🧪 Casos de Prueba (QA)
 
 | Caso | Input | Código Esperado |
@@ -78,4 +75,3 @@ El comportamiento se controla vía `application.properties` o variables de entor
 ---
 
 *Proyecto creado para Hackathon NoCountry.*
->>>>>>> f8b7abc ( 'corregido para nuevo pull request´' limpieza final, unificación de docs y estandarización Docker)
