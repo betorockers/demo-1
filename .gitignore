@@ -53,3 +53,5 @@ data/
 *.mv.db
 *.trace.db
 *.lock.db
+
+SPEECH_DEV4.md
