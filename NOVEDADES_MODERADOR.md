@@ -30,5 +30,19 @@ El nombre de la clase principal tiene un error de tipeo ("Proyect" en lugar de "
 
 **Recomendación:** Dado que estamos "limpiando" la casa para el jurado, sería ideal renombrarlo a `SentimentBackendApplication` para que coincida con el `artifactId` del `pom.xml`, pero **no es bloqueante**.
 
+# Registro de Cambios - Moderador
+
+## Actualización de Identidad del Proyecto
+Se ha renombrado el artefacto y la configuración del proyecto para reflejar su función como Backend.
+
+### Cambios realizados:
+1. **pom.xml**:
+   - `artifactId`: cambiado de `demo` a `backend-sentiment`.
+   - `name`: cambiado de `sentimentProyect` a `Backend Sentiment`.
+
+2. **application.properties**:
+   - `spring.application.name`: actualizado a `backend-sentiment`.
+
+
 ---
 *Saludos Dev 4 - QA / Omar Toledo*
