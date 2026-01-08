@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>com.sentiment</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>backend-sentiment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sentimentProyect</name>
+    <name>Backend Sentiment</name>
     <description>identificador de sentimientos</description>
 
     <properties>
